@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+{% load bootstrap5 %}
+{% block content %}
+
+    <section class="container mt-5">
+        <div class="d-flex mb-1">
+            <h2 class="d-inline-flex">Lista Vehiculos</h2>
+            <a class="d-inline-flex btn btn-primary ms-2" href={% url 'vehiculoAdd' %} role="button">Add</a>
+        </div>
+
+        {% bootstrap_messages %}
+        {% if vehiculos %}
+            <!--tabla con vehiculos-->
+        <table class="table table">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Serial Carroceria</th>
+                <th scope="col">Serial Motor</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Rango</th>
+                <th scope="col">Accion</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for vehiculo in vehiculos %}
+            <tr>
+                <td>{{ vehiculo.id }}</td>
+                <td>{{ vehiculo.marca }}</td>
+                <td>{{ vehiculo.modelo }}</td>
+                <td>{{ vehiculo.serial_carroceria }}</td>
+                <td>{{ vehiculo.serial_motor }}</td>
+                <td>{{ vehiculo.categoria }}</td>
+                <td>{{ vehiculo.precio }}</td>
+                <td>{{ vehiculo.rango_precio }}</td>
+                <td>
+                    <a class="btn p-0" href="{% url 'editar_vehiculo' vehiculo_id=vehiculo.id %}" role="button">
+                        <i class="fa fa-edit fa-lg text-primary"></i>
+                    </a>
+                    <a class="btn p-0" href="{% url 'eliminar_vehiculo' vehiculo_id=vehiculo.id %}" role="button">
+                        <i class="fa fa-trash fa-lg text-danger"></i>
+                    </a>
+                </td> 
+
+            </tr>
+
+            {% empty %}
+                <tr>
+                    <td>NO HAY VEHICULOS DISPONIBLES</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <!--No hay vehiculos-->
+        {% endif %}
+    </section>
+{% endblock %}

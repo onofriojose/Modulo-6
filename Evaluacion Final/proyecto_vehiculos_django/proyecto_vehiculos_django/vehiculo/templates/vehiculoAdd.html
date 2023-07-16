@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+    <!--Formulario de creacion de libros-->
+<section class="container mt-5">
+    <h2>Agregar Vehiculo</h2>
+    {% bootstrap_messages %}
+    <form method="post" action="{% url 'vehiculoAdd'%}">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input class="btn btn-primary" type="submit" value="Guardar">
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,22 @@
+1.makemigrations: se encarga de crear nuevas migraciones en función de los cambios que haya realizado en sus modelos.
+
+2.migrate: se encarga de aplicar y desaplicar migraciones.
+
+3.shell: Inicia una sesión interactiva de Python en el contexto de tu proyecto Django.
+
+4.dbshell: Inicia una sesión interactiva en la línea de comandos de la base de datos configurada en Django.
+
+5.showmigrations: Muestra el estado de las migraciones en tu proyecto Django.
+
+6.dumpdata: Genera un archivo JSON o YAML con los datos de la base de datos.
+
+7.test: Ejecuta casos de prueba definidos en tu proyecto Django.
+
+8.testserver: Inicia un servidor de desarrollo para ejecutar pruebas funcionales en tu aplicación.
+
+9.diffsettings: Muestra las diferencias entre el archivo de configuración actual y la configuración predeterminada de Django (u otro archivo de configuración especificado por --default)
+
+
+
+
+
