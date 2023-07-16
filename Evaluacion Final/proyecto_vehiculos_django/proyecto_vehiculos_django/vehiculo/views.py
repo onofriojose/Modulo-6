@@ -24,7 +24,11 @@ def vehiculo_add(request):
         form = VehiculoForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Vehiculo creado exitosamente')
             return redirect('lista_vehiculos')
+        else:
+            messages.error(request, 'Modificar datos de ingreso')  # crear mensaje de error
+            return HttpResponseRedirect(reverse('vehiculoAdd'))
     else:
         form = VehiculoForm()
     return render(request, 'vehiculoAdd.html', {'form': form})
