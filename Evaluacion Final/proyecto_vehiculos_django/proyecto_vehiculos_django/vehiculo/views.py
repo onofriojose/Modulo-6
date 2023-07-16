@@ -110,7 +110,7 @@ def editar_vehiculo(request, vehiculo_id):
 
 @login_required    
 def eliminar_vehiculo(request, vehiculo_id):
-    vehiculo = get_object_or_404(Vehiculo, id=vehiculo_id)  # obterner libro eb la db mediante id
+    vehiculo = get_object_or_404(Vehiculo, id=vehiculo_id)  # obterner vehiculo eb la db mediante id
     vehiculo.delete()
     messages.info(request, 'Vehiculo eliminado exitosamente')
     return redirect('lista_vehiculos')
