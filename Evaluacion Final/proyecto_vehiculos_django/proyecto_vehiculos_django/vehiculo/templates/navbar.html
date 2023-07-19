@@ -13,13 +13,12 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href={% url 'index' %}>Inicio</a>
         </li>
-        {% if user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-        </li>
+        {% if perms.vehiculo.add_vehiculo %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'vehiculoAdd' %}">Agregar</a>
         </li>
+        {% endif %}
+        {% if user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'lista_vehiculos' %}">Listar</a>
         </li>
@@ -32,6 +31,14 @@
         </li>
         {% endif %}
       </ul>
+      {% if user.is_authenticated %}
+      <span class="navbar-text">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </span>
+      <span class="navbar-text">
+        Hola, {{ user.username }}
+      </span>
+      {% endif %}
     </div>
   </div>
 </nav>

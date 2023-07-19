@@ -31,7 +31,7 @@ class Vehiculo(models.Model):
         verbose_name_plural = 'Vehiculos'
         #creando el permiso visualizar_catalogo -> se agrega despues en la funcion de registro de views (Ahora pertenece al grupo de New_Users y se le asigna a todos los usuarios que se registren)
         permissions = [
-            ('visualizar_catalogo', ', puede visualizar Catálogo de Vehículos'),
+            ('visualizar_catalogo', 'puede visualizar Catálogo de Vehículos'),
         ]
 
     def __str__(self):

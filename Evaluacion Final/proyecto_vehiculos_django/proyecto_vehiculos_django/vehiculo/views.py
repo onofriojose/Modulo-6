@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
@@ -19,7 +19,8 @@ class IndexPageView(TemplateView):
 
 
 @login_required
-def vehiculo_add(request):
+@permission_required("vehiculo.add_vehiculo")
+def vehiculo_add(request): 
     if request.method == 'POST':
         form = VehiculoForm(request.POST)
         if form.is_valid():
@@ -56,17 +57,13 @@ def registro(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()  #guardar el usuario registrado
-            group = Group.objects.get(name='New_Users')  #aqui se obtiene el grupo New_Users que cree en el sitio administrativo
-            user.groups.add(group)  #agregar al usuario al grupo New_Users
-            
-            '''paso a comentar estas lineas porque ahora el grupo de New_Users se encarga de asignarle este mismo permiso a todos los usuarios nuevos
             #asignar el permiso "visualizar_catalogo" al usuario
             content_type = ContentType.objects.get_for_model(Vehiculo)
             permission = Permission.objects.get(
                 codename='visualizar_catalogo', content_type=content_type
             )
             user.user_permissions.add(permission) #con user_permissions.add se agrega el permiso visualizar_catalogo a los usuarios que se registren
-            '''
+
             messages.success(request, 'Registrado exitosamente')
             return redirect('login')
         else:

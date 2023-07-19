@@ -5,7 +5,9 @@
     <section class="container mt-5">
         <div class="d-flex mb-1">
             <h2 class="d-inline-flex">Lista Vehiculos</h2>
+            {% if perms.vehiculo.add_vehiculo %}
             <a class="d-inline-flex btn btn-primary ms-2" href={% url 'vehiculoAdd' %} role="button">Add</a>
+            {% endif %}
         </div>
 
         {% bootstrap_messages %}
